@@ -11,6 +11,12 @@ const App = () => {
     { text: 'My todo no3', key: '3'},
   ])
 
+  const AddHandler = (text) => {
+    setTodos((prevTodos)=> {
+      return [{text: text, key: Math.random().toString()}, ...prevTodos]
+    })
+  }
+
   const removeHandler = (key) => {
     setTodos((prevTodos) => {
       return prevTodos.filter(todos => todos.key !== key);
@@ -21,7 +27,7 @@ const App = () => {
   <View style={styles.container}>
     <Header />
     <View style={styles.content}>
-      <AddTodo />
+      <AddTodo AddHandler={AddHandler}/>
       <View style={styles.list}>
         <FlatList data={todos} renderItem={({ item }) => (<TodoItem item={item} removeHandler={removeHandler}/>)} />
       </View>

@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import { Button, StyleSheet, TextInput, View } from 'react-native'
 
-function AddTodo() {
-  const [ todo, setTodo ] = useState('')
+function AddTodo({AddHandler}) {
+  const [ todo, setTodo ] = useState(undefined)
 
   const changeHandler = (val) => {
     setTodo(val)
   }
 
+  const toAddHandler = (val) => {
+    AddHandler(val)
+    setTodo(undefined)
+  }
+
   return (
     <View>
-        <TextInput style={styles.input} placeholder='New todo...' onChangeText={(val) => changeHandler(val)} />
-        <Button onPress={() => console.log('Text', todo)} title='Add todo' color='green' />
+        <TextInput style={styles.input} placeholder='New todo...' value={todo} onChangeText={(val) => changeHandler(val)} />
+        <Button onPress={() => toAddHandler(todo)} title='Add todo' color='green' />
     </View>
   )
 }
