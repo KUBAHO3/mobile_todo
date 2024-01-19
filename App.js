@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {StyleSheet, Text, View, FlatList} from 'react-native';
+import Header from './components/Header';
 
 const App = () => {
   const [todos, setTodos] = useState([
@@ -10,6 +11,7 @@ const App = () => {
 
   return(
   <View style={styles.container}>
+    <Header />
     <View style={styles.content}>
       <View style={styles.list}>
         <FlatList data={todos} renderItem={({ item }) => (<Text>{item.text}</Text>)} />
