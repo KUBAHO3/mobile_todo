@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import Header from './components/Header';
+import TodoItem from './components/TodoItem';
 
 const App = () => {
   const [todos, setTodos] = useState([
@@ -9,12 +10,18 @@ const App = () => {
     { text: 'My todo no3', key: '3'},
   ])
 
+  const removeHandler = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter(todos => todos.key !== key);
+    })
+  }
+
   return(
   <View style={styles.container}>
     <Header />
     <View style={styles.content}>
       <View style={styles.list}>
-        <FlatList data={todos} renderItem={({ item }) => (<Text>{item.text}</Text>)} />
+        <FlatList data={todos} renderItem={({ item }) => (<TodoItem item={item} removeHandler={removeHandler}/>)} />
       </View>
     </View>
   </View>
