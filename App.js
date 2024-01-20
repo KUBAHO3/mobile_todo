@@ -6,9 +6,9 @@ import AddTodo from './components/AddTodo';
 
 const App = () => {
   const [todos, setTodos] = useState([
-    { text: 'My todo no1', key: '1'},
-    { text: 'My todo no2', key: '2'},
-    { text: 'My todo no3', key: '3'},
+    { text: 'Name 1', key: '1'},
+    { text: 'Name 2', key: '2'},
+    { text: 'Name 3', key: '3'},
   ])
 
   const [todo, setTodo] = useState(false)
@@ -53,9 +53,13 @@ const styles = StyleSheet.create({
   },
   content: {    
     padding: 40,
+    flex: 1,
+    // backgroundColor: 'pink'
   },
   list: {
     marginTop: 12,
+    flex: 1,
+    // backgroundColor: 'yellow'
   }
 });
 

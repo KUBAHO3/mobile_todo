@@ -29,8 +29,8 @@ function AddTodo({AddHandler, currentTodo}) {
 
   return (
     <View>
-        <TextInput style={styles.input} placeholder='New todo...' value={todo.text} onChangeText={(val) => changeHandler(val)} />
-        <Button onPress={() => toAddHandler(todo)} title='Add todo' color='green' />
+        <TextInput style={styles.input} placeholder='New Name...' value={todo.text} onChangeText={(val) => changeHandler(val)} />
+        <Button onPress={() => toAddHandler(todo)} title='Add Name' color='green' />
     </View>
   )
 }
