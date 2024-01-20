@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
@@ -10,6 +10,8 @@ const App = () => {
     { text: 'My todo no2', key: '2'},
     { text: 'My todo no3', key: '3'},
   ])
+
+  const [todo, setTodo] = useState(false)
 
   const AddHandler = (text) => {
     setTodos((prevTodos)=> {
@@ -23,16 +25,23 @@ const App = () => {
     })
   }
 
+  const editHandler = (item) => {
+    setTodo(item);
+    removeHandler(item.key)
+  }
+
   return(
-  <View style={styles.container}>
-    <Header />
-    <View style={styles.content}>
-      <AddTodo AddHandler={AddHandler}/>
-      <View style={styles.list}>
-        <FlatList data={todos} renderItem={({ item }) => (<TodoItem item={item} removeHandler={removeHandler}/>)} />
+    <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.content}>
+          <AddTodo AddHandler={AddHandler} currentTodo={todo}/>
+          <View style={styles.list}>
+            <FlatList data={todos} renderItem={({ item }) => (<TodoItem item={item} removeHandler={removeHandler} editHandler={editHandler}/>)} />
+          </View>
+        </View>
       </View>
-    </View>
-  </View>
+    </TouchableWithoutFeedback>
   )
  }
 
